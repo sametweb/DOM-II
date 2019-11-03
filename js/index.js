@@ -132,7 +132,6 @@ destination.forEach(item => {
     "dragend",
     function(event) {
       event.target.style.opacity = 1;
-      console.log("dragend", event.target);
       event.target.parentNode.style.background = "white";
     },
     false
@@ -166,7 +165,6 @@ destination.forEach(item => {
       if (event.target.parentNode.className == "destination") {
         event.target.parentNode.parentNode.style.background = "white";
       }
-      console.log("dragleave", event.target);
     },
     false
   );
@@ -174,17 +172,54 @@ destination.forEach(item => {
   item.addEventListener(
     "drop",
     function(event) {
-      item.style.opacity = 1;
-      event.target.style.opacity = 1;
-      item.style.background = "white";
-      event.target.style.background = "white";
       event.preventDefault();
-      console.log("drop item ", item);
-      console.log("drop event target parentNode", event.target.parentNode);
+      event.target.style.opacity = 1;
+      event.target.style.background = "white";
+      item.style.opacity = 1;
+      item.style.background = "white";
+      event.target.parentNode.prepend(item);
       item.parentNode.prepend(event.target.parentNode);
-      event.target.parentNode(item);
       item.parentNode.remove(item);
     },
     false
   );
+});
+
+let logo = document.querySelector(".logo-heading");
+
+window.addEventListener("resize", function() {
+  logo.classList.add("apply-shake");
+  logo.style.fontSize = "6rem";
+});
+logo.addEventListener("animationend", function() {
+  logo.classList.remove("apply-shake");
+  logo.style.fontSize = "4rem";
+});
+
+window.addEventListener("load", () => {
+  document.querySelector("body").appendChild(overlay);
+  overlay = document.querySelector(".overlay");
+  overlay.style.position = "fixed";
+  overlay.style.width = "100%";
+  overlay.style.height = "100%";
+  overlay.style.top = 0;
+  overlay.style.left = 0;
+  overlay.style.right = 0;
+  overlay.style.bottom = 0;
+  overlay.style.background = "rgba(0,0,0,0.8)";
+  overlay.style.zIndex = 10;
+  let welcome = document.createElement("h1");
+  let welcome2 = document.createElement("h4");
+  welcome.textContent = "Welcome!";
+  welcome2.textContent = "Click anywhere to continue";
+  welcome.style.color = "white";
+  welcome2.style.color = "white";
+  welcome.style.fontSize = "14rem";
+  welcome2.style.fontSize = "4rem";
+  welcome.style.textAlign = "center";
+  welcome2.style.textAlign = "center";
+  welcome.style.marginTop = "30rem";
+  document.querySelector(".overlay").appendChild(welcome);
+  document.querySelector(".overlay").appendChild(welcome2);
+  overlay.addEventListener("click", () => (overlay.style.display = "none"));
 });
