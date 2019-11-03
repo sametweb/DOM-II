@@ -3,7 +3,9 @@
   height: 90px;
   background: @main-bg;
   border-bottom: 2px dashed @navigation-border;
-  position: fixed;
+  position: sticky;
+  z-index: 10;
+  top: 0;
 
   .nav-container {
     height: 100%;
@@ -32,8 +34,7 @@
         width: 100%;
         justify-content: space-around;
       }
-      
-      
+
       a {
         font-size: 1.6rem;
         color: @font-color;
