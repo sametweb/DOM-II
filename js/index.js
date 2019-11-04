@@ -209,7 +209,6 @@ window.addEventListener("load", () => {
   welcomeOverlay.style.bottom = 0;
   welcomeOverlay.style.background = "rgba(0,0,0,0.8)";
   welcomeOverlay.style.zIndex = 10;
-  welcomeOverlay.style.transition = "all 1s ease-in-out";
   let welcomeTitle = document.createElement("h1");
   let welcomeTitle2 = document.createElement("h4");
   welcomeTitle.textContent = "Welcome!";
@@ -226,4 +225,41 @@ window.addEventListener("load", () => {
   welcomeOverlay.addEventListener("click", () => {
     welcomeOverlay.style.transform = "translateX(-1600px)";
   });
+});
+
+window.addEventListener("keydown", event => {
+  event.preventDefault();
+  const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+  let logotext = [...logo.textContent].join("");
+
+  if (event.code == "Space") {
+    logotext = logotext.replace(
+      logotext.charAt([Math.floor(Math.random() * 7)]),
+      characters.charAt(Math.floor(Math.random() * characters.length))
+    );
+    logo.textContent = logotext;
+  }
+});
+
+let links = nav.querySelectorAll("a");
+links.forEach(item =>
+  item.addEventListener("click", event => event.preventDefault())
+);
+
+window.addEventListener("copy", function(event) {
+  event.preventDefault();
+  alert("No No No No no!!");
+});
+
+window.addEventListener("scroll", event => {
+  let body = document.querySelector("body");
+
+  body.style.background = `rgba(${Math.random() * 255},${Math.random() *
+    255},${Math.random() * 255}, 0.3 )`;
+});
+
+window.addEventListener("mouseup", function(event) {
+  window.getSelection().toString()
+    ? alert(window.getSelection().toString())
+    : null;
 });
