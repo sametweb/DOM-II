@@ -241,7 +241,7 @@ window.addEventListener("keydown", event => {
   }
 });
 
-let links = nav.querySelectorAll("a");
+let links = document.querySelectorAll("nav a");
 links.forEach(item =>
   item.addEventListener("click", event => event.preventDefault())
 );
@@ -253,7 +253,7 @@ window.addEventListener("copy", function(event) {
 
 window.addEventListener("scroll", event => {
   let body = document.querySelector("body");
-
+  console.log(body, event);
   body.style.background = `rgba(${Math.random() * 255},${Math.random() *
     255},${Math.random() * 255}, 0.3 )`;
 });
